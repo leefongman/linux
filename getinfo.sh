@@ -34,7 +34,7 @@ get_software_num(){
 # 获取ip
 get_ip(){
     ip a s | grep -w "inet" | tail -n +2 | head -n1\
-        | awk '{ print $2}' | awk -F/ '{ print $1}'
+        | awk '{ print $2 }' | awk -F/ '{ print $1 }'
 }
 
 echo "cpu num: $(get_cpu_num)"
