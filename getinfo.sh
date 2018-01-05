@@ -9,11 +9,11 @@ get_cpu_num(){
 }
 # 获取总内存
 get_memory_total(){
-    free -h | head -n2 | tail -n1 | awk '{ print $2 }'
+    free -h | awk 'NR==2{ print $2 }'
 }
 # 获取可用内存
 get_memory_free(){
-    free -m | head -n2 | tail -n1 | awk '{ print $NF }'
+    free -m | awk 'NR==2{ print $NF }'
 }
 # 获取挂载到根目录的文件系统的总大小
 get_disk_size(){
@@ -33,8 +33,7 @@ get_software_num(){
 }
 # 获取ip
 get_ip(){
-    ip a s | grep -w "inet" | tail -n +2 | head -n1\
-        | awk '{ print $2 }' | awk -F/ '{ print $1 }'
+    ip a s | grep -w "inet" | awk 'NR==2{ print $2 }' | awk -F/ '{ print $1 }'
 }
 
 echo "cpu num: $(get_cpu_num)"
